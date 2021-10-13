@@ -361,7 +361,7 @@ class ChipsChoiceState<T> extends State<ChipsChoice<T>> {
         crossAxisAlignment: widget.crossAxisAlignment,
         mainAxisAlignment: widget.mainAxisAlignment,
         mainAxisSize: widget.mainAxisSize,
-        children: choiceChips as List<Widget>,
+        children: choiceChips,
       ),
     );
   }
@@ -369,7 +369,7 @@ class ChipsChoiceState<T> extends State<ChipsChoice<T>> {
   Widget get listScrollableVertical {
     return ListView.builder(
       itemCount: choiceItems!.length,
-      itemBuilder: (context, i) => choiceChipsGenerator(i)!,
+      itemBuilder: (context, i) => choiceChipsGenerator(i),
     );
   }
 
@@ -393,14 +393,14 @@ class ChipsChoiceState<T> extends State<ChipsChoice<T>> {
   }
 
   /// generate the choice chips
-  List<Widget?> get choiceChips {
-    return List<Widget?>.generate(choiceItems!.length, choiceChipsGenerator)
+  List<Widget> get choiceChips {
+    return List<Widget>.generate(choiceItems!.length, choiceChipsGenerator)
         .where((e) => e != null)
         .toList();
   }
 
   /// choice chips generator
-  Widget? choiceChipsGenerator(int i) {
+  Widget choiceChipsGenerator(int i) {
     if (widget._values == null) {
       print(widget._values);
     }
@@ -428,7 +428,7 @@ class ChipsChoiceState<T> extends State<ChipsChoice<T>> {
               label: widget.choiceLabelBuilder?.call(item),
               avatar: widget.choiceAvatarBuilder?.call(item),
             )
-        : null;
+        : Container();
   }
 
   /// return the selection function
