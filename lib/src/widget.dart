@@ -387,7 +387,7 @@ class ChipsChoiceState<T> extends State<ChipsChoice<T>> {
         spacing: widget.spacing, // gap between adjacent chips
         runSpacing: widget.runSpacing, // gap between lines
         clipBehavior: widget.clipBehavior,
-        children: choiceChips as List<Widget>,
+        children: choiceChips,
       ),
     );
   }
@@ -401,9 +401,6 @@ class ChipsChoiceState<T> extends State<ChipsChoice<T>> {
 
   /// choice chips generator
   Widget choiceChipsGenerator(int i) {
-    if (widget._values == null) {
-      print(widget._values);
-    }
     final selected = widget._isMultiChoice
         ? widget._values.contains(choiceItems![i].value)
         : widget._value == choiceItems![i].value;
